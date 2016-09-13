@@ -7,8 +7,8 @@ android {
         applicationId 'com.delozoya.nuclearota'
         minSdkVersion 21
         targetSdkVersion 22
-        versionCode 4
-        versionName "5.5.10"
+        versionCode 1
+        versionName "0.0.1"
     }
     buildTypes {
         release {
