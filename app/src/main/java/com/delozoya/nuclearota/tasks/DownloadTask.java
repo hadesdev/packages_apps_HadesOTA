@@ -38,6 +38,7 @@ import com.delozoya.nuclearota.MainActivity;
 import com.delozoya.nuclearota.R;
 
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -207,138 +208,154 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
             Toast.makeText(context, "File downloaded", Toast.LENGTH_SHORT).show();
             Log.d("TEST",version);
 
-            AlertDialog.Builder builder_reboot = new AlertDialog.Builder(context);
-            builder_reboot.setTitle(context.getString(R.string.dialog_reboot_title));
-            builder_reboot.setMessage(context.getString(R.string.dialog_reboot_message));
-            builder_reboot.setPositiveButton(context.getString(R.string.reboot), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    AlertDialog.Builder builder_backup = new AlertDialog.Builder(context);
-                    builder_backup.setTitle(context.getString(R.string.dialog_backup_title));
-                    builder_backup.setMessage(context.getString(R.string.dialog_backup_message));
-                    builder_backup.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+            if(checkRootMethod()) {
+                AlertDialog.Builder builder_reboot = new AlertDialog.Builder(context);
+                builder_reboot.setTitle(context.getString(R.string.dialog_reboot_title));
+                builder_reboot.setMessage(context.getString(R.string.dialog_reboot_message));
+                builder_reboot.setPositiveButton(context.getString(R.string.reboot), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        AlertDialog.Builder builder_backup = new AlertDialog.Builder(context);
+                        builder_backup.setTitle(context.getString(R.string.dialog_backup_title));
+                        builder_backup.setMessage(context.getString(R.string.dialog_backup_message));
+                        builder_backup.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
 
-                            AlertDialog.Builder builder_wipe = new AlertDialog.Builder(context);
-                            builder_wipe.setTitle(context.getString(R.string.dialog_wipe_title));
-                            builder_wipe.setMessage(context.getString(R.string.dialog_wipe_message));
-                            builder_wipe.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    String [] commands = {"su", "-c", "echo backup SDB "+version+" > /cache/recovery/openrecoveryscript" };
-                                    String [] commands2 = {"su", "-c", "echo wipe data >> /cache/recovery/openrecoveryscript" };
-                                    String [] commands6 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript" };
-                                    String [] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript" };
-                                    String [] commands4 = {"su", "-c", "echo install "+Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip"+" >> /cache/recovery/openrecoveryscript" };
-                                    String [] commands5 = {"su", "-c", "reboot recovery" };
+                                AlertDialog.Builder builder_wipe = new AlertDialog.Builder(context);
+                                builder_wipe.setTitle(context.getString(R.string.dialog_wipe_title));
+                                builder_wipe.setMessage(context.getString(R.string.dialog_wipe_message));
+                                builder_wipe.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        String[] commands = {"su", "-c", "echo backup SDB " + version + " > /cache/recovery/openrecoveryscript"};
+                                        String[] commands2 = {"su", "-c", "echo wipe data >> /cache/recovery/openrecoveryscript"};
+                                        String[] commands6 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
+                                        String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
+                                        String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                        String[] commands5 = {"su", "-c", "reboot recovery"};
 
-                                    try {
-                                        Process p = Runtime.getRuntime().exec(commands);
+                                        try {
+                                            Process p = Runtime.getRuntime().exec(commands);
 
-                                        Process p2 = Runtime.getRuntime().exec(commands2);
-                                        Process p6 = Runtime.getRuntime().exec(commands6);
-                                        Process p3 = Runtime.getRuntime().exec(commands3);
-                                        Process p4 = Runtime.getRuntime().exec(commands4);
-                                        Process p5 = Runtime.getRuntime().exec(commands5);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                            Process p2 = Runtime.getRuntime().exec(commands2);
+                                            Process p6 = Runtime.getRuntime().exec(commands6);
+                                            Process p3 = Runtime.getRuntime().exec(commands3);
+                                            Process p4 = Runtime.getRuntime().exec(commands4);
+                                            Process p5 = Runtime.getRuntime().exec(commands5);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                }
-                            });
-                            builder_wipe.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    try {
-                                        String [] commands = {"su", "-c", "echo backup SDB"+version+" >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands4 = {"su", "-c", "echo install "+Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip"+" >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands5 = {"su", "-c", "reboot recovery" };
+                                });
+                                builder_wipe.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        try {
+                                            String[] commands = {"su", "-c", "echo backup SDB" + version + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands5 = {"su", "-c", "reboot recovery"};
 
-                                        Process p = Runtime.getRuntime().exec(commands);
-                                        Process p2 = Runtime.getRuntime().exec(commands2);
-                                        Process p3 = Runtime.getRuntime().exec(commands3);
-                                        Process p4 = Runtime.getRuntime().exec(commands4);
-                                        Process p5 = Runtime.getRuntime().exec(commands5);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                            Process p = Runtime.getRuntime().exec(commands);
+                                            Process p2 = Runtime.getRuntime().exec(commands2);
+                                            Process p3 = Runtime.getRuntime().exec(commands3);
+                                            Process p4 = Runtime.getRuntime().exec(commands4);
+                                            Process p5 = Runtime.getRuntime().exec(commands5);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                }
-                            });
+                                });
 
-                            AlertDialog dialog_wipe = builder_wipe.create();
-                            dialog_wipe.show();
+                                AlertDialog dialog_wipe = builder_wipe.create();
+                                dialog_wipe.show();
 
-                        }
-                    });
-                    builder_backup.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            AlertDialog.Builder builder_wipe = new AlertDialog.Builder(context);
-                            builder_wipe.setTitle(context.getString(R.string.dialog_wipe_title));
-                            builder_wipe.setMessage(context.getString(R.string.dialog_wipe_message));
-                            builder_wipe.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    try {
-                                        String [] commands1 = {"su", "-c", "echo wipe data > /cache/recovery/openrecoveryscript" };
-                                        String [] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands4 = {"su", "-c", "echo install "+Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip"+" >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands5 = {"su", "-c", "reboot recovery" };
+                            }
+                        });
+                        builder_backup.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                AlertDialog.Builder builder_wipe = new AlertDialog.Builder(context);
+                                builder_wipe.setTitle(context.getString(R.string.dialog_wipe_title));
+                                builder_wipe.setMessage(context.getString(R.string.dialog_wipe_message));
+                                builder_wipe.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        try {
+                                            String[] commands1 = {"su", "-c", "echo wipe data > /cache/recovery/openrecoveryscript"};
+                                            String[] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands5 = {"su", "-c", "reboot recovery"};
 
-                                        Process p1 = Runtime.getRuntime().exec(commands1);
-                                        Process p2 = Runtime.getRuntime().exec(commands2);
-                                        Process p3 = Runtime.getRuntime().exec(commands3);
-                                        Process p4 = Runtime.getRuntime().exec(commands4);
-                                        Process p5 = Runtime.getRuntime().exec(commands5);
+                                            Process p1 = Runtime.getRuntime().exec(commands1);
+                                            Process p2 = Runtime.getRuntime().exec(commands2);
+                                            Process p3 = Runtime.getRuntime().exec(commands3);
+                                            Process p4 = Runtime.getRuntime().exec(commands4);
+                                            Process p5 = Runtime.getRuntime().exec(commands5);
 
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
                                     }
+                                });
+                                builder_wipe.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        try {
+                                            String[] commands2 = {"su", "-c", "echo wipe dalvik > /cache/recovery/openrecoveryscript"};
+                                            String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands5 = {"su", "-c", "reboot recovery"};
 
-                                }
-                            });
-                            builder_wipe.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    try {
-                                        String [] commands2 = {"su", "-c", "echo wipe dalvik > /cache/recovery/openrecoveryscript" };
-                                        String [] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands4 = {"su", "-c", "echo install "+Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip"+" >> /cache/recovery/openrecoveryscript" };
-                                        String [] commands5 = {"su", "-c", "reboot recovery" };
-
-                                        Process p2 = Runtime.getRuntime().exec(commands2);
-                                        Process p3 = Runtime.getRuntime().exec(commands3);
-                                        Process p4 = Runtime.getRuntime().exec(commands4);
-                                        Process p5 = Runtime.getRuntime().exec(commands5);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
+                                            Process p2 = Runtime.getRuntime().exec(commands2);
+                                            Process p3 = Runtime.getRuntime().exec(commands3);
+                                            Process p4 = Runtime.getRuntime().exec(commands4);
+                                            Process p5 = Runtime.getRuntime().exec(commands5);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                }
-                            });
+                                });
 
-                            AlertDialog dialog_wipe = builder_wipe.create();
-                            dialog_wipe.show();
-                        }
-                    });
+                                AlertDialog dialog_wipe = builder_wipe.create();
+                                dialog_wipe.show();
+                            }
+                        });
 
-                    AlertDialog dialog_backup = builder_backup.create();
-                    dialog_backup.show();
-                }
-            });
-            builder_reboot.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    mNotifyManager.cancel(id);
-                    AlertDialog.Builder builder_info = new AlertDialog.Builder(context);
-                    builder_info.setTitle(context.getString(R.string.dialog_info_title));
-                    builder_info.setMessage(context.getString(R.string.dialog_info_message,Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip"));
-                    builder_info.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+                        AlertDialog dialog_backup = builder_backup.create();
+                        dialog_backup.show();
+                    }
+                });
+                builder_reboot.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        mNotifyManager.cancel(id);
+                        AlertDialog.Builder builder_info = new AlertDialog.Builder(context);
+                        builder_info.setTitle(context.getString(R.string.dialog_info_title));
+                        builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip"));
+                        builder_info.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
 
-                        }
-                    });
+                            }
+                        });
 
-                    AlertDialog dialog_info = builder_info.create();
-                    dialog_info.show();
-                }
-            });
+                        AlertDialog dialog_info = builder_info.create();
+                        dialog_info.show();
+                    }
+                });
+                AlertDialog dialog_reboot = builder_reboot.create();
+                dialog_reboot.show();
 
+            }else{
+                mNotifyManager.cancel(id);
+                AlertDialog.Builder builder_info = new AlertDialog.Builder(context);
+                builder_info.setTitle(context.getString(R.string.dialog_info_title));
+                builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip"));
+                builder_info.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
+                    }
+                });
+
+                AlertDialog dialog_info = builder_info.create();
+                dialog_info.show();
+            }
         }
     }
 
@@ -365,7 +382,38 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
       //  mInstance = null;
     }
 
+    private static boolean checkRootMethod() {
+        Process p;
+        try {
+            // Preform su to get root privledges
+            p = Runtime.getRuntime().exec("su");
 
+            // Attempt to write a file to a root-only
+            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+            os.writeBytes("echo \"Do I have root?\" >/system/sd/temporary.txt\n");
+
+            // Close the terminal
+            os.writeBytes("exit\n");
+            os.flush();
+            try {
+                p.waitFor();
+                if (p.exitValue() != 255) {
+                    // TODO Code to run on success
+                    return true;
+                }
+                else {
+                    // TODO Code to run on unsuccessful
+                    return false;
+                }
+            } catch (InterruptedException e) {
+                // TODO Code to run in interrupted exception
+                return false;
+            }
+        } catch (IOException e) {
+            // TODO Code to run in input/output exception
+            return false;
+        }
+    }
 
     private static boolean isConnectivityAvailable(Context context) {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -32,8 +32,6 @@ import com.delozoya.nuclearota.configs.LinkConfig;
 import com.delozoya.nuclearota.dialogs.WaitDialogFragment;
 import com.delozoya.nuclearota.fragments.NuclearOTAFragment;
 
-import java.io.IOException;
-
 public class main extends PreferenceActivity implements
         WaitDialogFragment.OTADialogListener, LinkConfig.LinkConfigListener {
 
@@ -50,12 +48,6 @@ public class main extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("support",mShowLauncherShortcut()+"");
-        try {
-            Process p = Runtime.getRuntime().exec("su");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         mFragment = (NuclearOTAFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (mFragment == null) {
             getFragmentManager().beginTransaction()
