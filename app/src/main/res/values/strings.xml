@@ -18,8 +18,11 @@
 <resources>
 
     <!-- App -->
-    <string name="app_name">SlimOTA</string>
-    <string name="app_title">SlimOTA</string>
+    <string name="app_name">NuclearOTA</string>
+    <string name="app_title">NuclearOTA</string>
+    <string name="ok">Ok</string>
+    <string name="reboot">Reboot</string>
+    <string name="cancel">No</string>
 
     <!-- Categories -->
     <string name="ota_category">OTA</string>
@@ -36,6 +39,7 @@
     <string name="last_check_never">Never</string>
     <string name="check_update_failed">Can\'t check update</string>
     <string name="no_update_available">No update available</string>
+    <string name="check_update">Please, Check update.</string>
 
     <!-- Update interval -->
     <string name="interval_title">Automatic update interval</string>
@@ -46,7 +50,27 @@
     <string name="notification_title">ROM Update</string>
     <string name="notification_message">New update available!</string>
 
+    <!-- Notification -->
+    <string name="notification_download_title">ROM Download</string>
+    <string name="notification_download_message">Download in progress: %1$d </string>
+
     <!-- Dialog -->
     <string name="dialog_message">Checking for ROM updates, please wait…</string>
+
+    <!-- Reboot -->
+    <string name="dialog_reboot_title">Reboot?</string>
+    <string name="dialog_reboot_message">Would you like to auto install the rom? \nWill restart after downloading ROM!!!</string>
+
+    <!-- Backup -->
+    <string name="dialog_backup_title">Backup</string>
+    <string name="dialog_backup_message">Would you make a backup of your current ROM? \nThe backup is saved in the folder TWRP!!!</string>
+
+    <!-- Wipe -->
+    <string name="dialog_wipe_title">WIPE DATA!!</string>
+    <string name="dialog_wipe_message">Would you like to WIPE DATA partition? \nThis wipe does not erase the internal memory!!!</string>
+
+    <!-- Path -->
+    <string name="dialog_info_title">INFO!!</string>
+    <string name="dialog_info_message">The update path is: %1$s</string>
 
 </resources>
