@@ -20,9 +20,12 @@
     <!-- App -->
     <string name="app_name">NuclearOTA</string>
     <string name="app_title">NuclearOTA</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="reboot">Reboot</string>
     <string name="cancel">No</string>
+
+    <!-- Menu -->
+    <string name="hide_icon">Hide Launcher Icon</string>
 
     <!-- Categories -->
     <string name="ota_category">OTA</string>
