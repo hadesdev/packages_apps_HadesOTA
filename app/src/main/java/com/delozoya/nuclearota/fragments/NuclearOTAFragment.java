@@ -124,7 +124,7 @@ public class NuclearOTAFragment extends PreferenceFragment implements
             if (fullLatestVersion.isEmpty()) {
                 fullLatestVersion = getActivity().getResources().getString(R.string.unknown);
                 mRomInfo.setSummary(String.format(prefix, fullLatestVersion));
-            } else if (!OTAVersion.compareVersion(shortLatestVersion, shortLocalVersion, getActivity())) {
+            } else if (!OTAVersion.checkServerVersion(fullLatestVersion, getActivity())) {
                 mRomInfo.setSummary(getActivity().getResources().getString(R.string.system_uptodate));
             } else {
                 mRomInfo.setSummary(String.format(prefix, fullLatestVersion));

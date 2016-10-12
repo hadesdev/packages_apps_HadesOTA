@@ -27,6 +27,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.delozoya.nuclearota.MainActivity;
 import com.delozoya.nuclearota.R;
@@ -35,6 +36,7 @@ import com.delozoya.nuclearota.configs.LinkConfig;
 import com.delozoya.nuclearota.configs.OTAConfig;
 import com.delozoya.nuclearota.configs.OTAVersion;
 import com.delozoya.nuclearota.dialogs.WaitDialogHandler;
+import com.delozoya.nuclearota.fragments.NuclearOTAFragment;
 import com.delozoya.nuclearota.utils.OTAUtils;
 import com.delozoya.nuclearota.xml.OTADevice;
 import com.delozoya.nuclearota.xml.OTAParser;

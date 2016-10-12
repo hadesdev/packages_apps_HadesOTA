@@ -40,6 +40,7 @@ public class OTAParser {
     private String mDeviceName = null;
     private String mReleaseType = null;
     private OTADevice mDevice = null;
+    public static String mVersion = null;
 
     private static OTAParser mInstance;
 
