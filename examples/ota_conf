@@ -7,7 +7,7 @@
 # * Multiple devices can be added in the xml file
 # * You can define any tags that end with 'Url'. These tags will be added in the UI automatically 
 #
-ota_url=https://www.dropbox.com/s/u2k60hvjn2c02h0/ota_lollipop.xml?dl=1
+ota_url=https://dl.dropboxusercontent.com/s/lw9e8e7o3qttbfn/ota.xml?dl=0
 release_type=Stable
 device_name=ro.product.device
 
@@ -32,7 +32,7 @@ device_name=ro.product.device
 # Version position: 3 (zero based)
 # Version format:
 #
-version_source=ro.modversion
+version_source=ro.cm.version
 version_delimiter=-
 version_position=3
 version_format=yyyyMMdd

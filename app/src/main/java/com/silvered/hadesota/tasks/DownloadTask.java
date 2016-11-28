@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.tasks;
+package com.silvered.hadesota.tasks;
 
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -30,18 +30,15 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.PowerManager;
-import android.os.RecoverySystem;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.delozoya.nuclearota.MainActivity;
-import com.delozoya.nuclearota.R;
+import com.silvered.hadesota.MainActivity;
+import com.silvered.hadesota.R;
 
-import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -107,9 +104,9 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
             // download the file
             input = connection.getInputStream();
-            File f = new File(Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/");
+            File f = new File(Environment.getExternalStorageDirectory()+"/HadesRom/tmp/");
             f.mkdirs();
-            output = new FileOutputStream(Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip");
+            output = new FileOutputStream(Environment.getExternalStorageDirectory()+"/HadesRom/tmp/update.zip");
 
             byte data[] = new byte[4096];
             long total = 0;
@@ -198,7 +195,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         mNotifyManager.notify(id, mBuilder.build());
 
         final StringBuilder script = new StringBuilder();
-        final String filePath_ = Environment.getExternalStorageDirectory()+"/NucleaRom/tmp/update.zip";
+        final String filePath_ = Environment.getExternalStorageDirectory()+"/HadesRom/tmp/update.zip";
         final String LINE_RETURN = "\n";
 
         final String SCRIPT_PATH = "/cache/recovery/openrecoveryscript";
@@ -229,7 +226,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                                         String[] commands2 = {"su", "-c", "echo wipe data >> /cache/recovery/openrecoveryscript"};
                                         String[] commands6 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
                                         String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
-                                        String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                        String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
                                         String[] commands5 = {"su", "-c", "reboot recovery"};
 
                                         try {
@@ -251,7 +248,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                                             String[] commands = {"su", "-c", "echo backup SDB" + version + " >> /cache/recovery/openrecoveryscript"};
                                             String[] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
                                             String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
-                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
                                             String[] commands5 = {"su", "-c", "reboot recovery"};
 
                                             Process p = Runtime.getRuntime().exec(commands);
@@ -281,7 +278,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                                             String[] commands1 = {"su", "-c", "echo wipe data > /cache/recovery/openrecoveryscript"};
                                             String[] commands2 = {"su", "-c", "echo wipe dalvik >> /cache/recovery/openrecoveryscript"};
                                             String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
-                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
                                             String[] commands5 = {"su", "-c", "reboot recovery"};
 
                                             Process p1 = Runtime.getRuntime().exec(commands1);
@@ -301,7 +298,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                                         try {
                                             String[] commands2 = {"su", "-c", "echo wipe dalvik > /cache/recovery/openrecoveryscript"};
                                             String[] commands3 = {"su", "-c", "echo wipe cache >> /cache/recovery/openrecoveryscript"};
-                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
+                                            String[] commands4 = {"su", "-c", "echo install " + Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip" + " >> /cache/recovery/openrecoveryscript"};
                                             String[] commands5 = {"su", "-c", "reboot recovery"};
 
                                             Process p2 = Runtime.getRuntime().exec(commands2);
@@ -328,7 +325,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                         mNotifyManager.cancel(id);
                         AlertDialog.Builder builder_info = new AlertDialog.Builder(context);
                         builder_info.setTitle(context.getString(R.string.dialog_info_title));
-                        builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip"));
+                        builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip"));
                         builder_info.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
@@ -346,7 +343,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                 mNotifyManager.cancel(id);
                 AlertDialog.Builder builder_info = new AlertDialog.Builder(context);
                 builder_info.setTitle(context.getString(R.string.dialog_info_title));
-                builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/NucleaRom/tmp/update.zip"));
+                builder_info.setMessage(context.getString(R.string.dialog_info_message, Environment.getExternalStorageDirectory() + "/HadesRom/tmp/update.zip"));
                 builder_info.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -427,8 +424,8 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         mBuilder = new Notification.Builder(context);
         mBuilder.setContentTitle(context.getString(R.string.notification_download_title))
                 .setContentText(context.getString(R.string.notification_download_message,0))
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.notification_nuclear_large))
-                .setSmallIcon(R.drawable.notification_nuclear);
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.notification_hades_large))
+                .setSmallIcon(R.drawable.notification_hades);
 
         mBuilder.setAutoCancel(false);
 

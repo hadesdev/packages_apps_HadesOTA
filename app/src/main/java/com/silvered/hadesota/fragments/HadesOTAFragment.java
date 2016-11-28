@@ -14,12 +14,8 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.fragments;
+package com.silvered.hadesota.fragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,20 +27,20 @@ import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.delozoya.nuclearota.R;
-import com.delozoya.nuclearota.configs.AppConfig;
-import com.delozoya.nuclearota.configs.LinkConfig;
-import com.delozoya.nuclearota.configs.OTAVersion;
-import com.delozoya.nuclearota.dialogs.WaitDialogFragment;
-import com.delozoya.nuclearota.tasks.CheckUpdateTask;
-import com.delozoya.nuclearota.tasks.DownloadTask;
-import com.delozoya.nuclearota.utils.OTAUtils;
-import com.delozoya.nuclearota.xml.OTALink;
+import com.silvered.hadesota.R;
+import com.silvered.hadesota.configs.AppConfig;
+import com.silvered.hadesota.configs.LinkConfig;
+import com.silvered.hadesota.configs.OTAVersion;
+import com.silvered.hadesota.dialogs.WaitDialogFragment;
+import com.silvered.hadesota.tasks.CheckUpdateTask;
+import com.silvered.hadesota.tasks.DownloadTask;
+import com.silvered.hadesota.utils.OTAUtils;
+import com.silvered.hadesota.xml.OTALink;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NuclearOTAFragment extends PreferenceFragment implements
+public class HadesOTAFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener ,
         WaitDialogFragment.OTADialogListener,
@@ -72,7 +68,7 @@ public class NuclearOTAFragment extends PreferenceFragment implements
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        addPreferencesFromResource(R.xml.nuclearota);
+        addPreferencesFromResource(R.xml.hadesota);
 
         mRomInfo = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_ROM_INFO);
         mCheckUpdate = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_CHECK_UPDATE);

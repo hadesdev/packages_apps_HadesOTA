@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.dialogs;
+package com.silvered.hadesota.dialogs;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -22,7 +22,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.delozoya.nuclearota.R;
+import com.silvered.hadesota.R;
 
 public class WaitDialogFragment extends DialogFragment {
 

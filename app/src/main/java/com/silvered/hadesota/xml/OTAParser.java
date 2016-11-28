@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.xml;
+package com.silvered.hadesota.xml;
 
 import android.util.Log;
 import android.util.Xml;

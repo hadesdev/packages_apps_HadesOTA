@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Main" >
         <activity
-            android:name="com.delozoya.nuclearota.MainActivity"
+            android:name="com.silvered.hadesota.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

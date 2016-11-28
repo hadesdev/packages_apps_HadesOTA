@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.scheduler;
+package com.silvered.hadesota.scheduler;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -25,8 +25,8 @@ import android.net.NetworkInfo;
 import android.os.SystemClock;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
-import com.delozoya.nuclearota.configs.AppConfig;
-import com.delozoya.nuclearota.utils.OTAUtils;
+import com.silvered.hadesota.configs.AppConfig;
+import com.silvered.hadesota.utils.OTAUtils;
 
 public class OTAListener implements WakefulIntentService.AlarmListener {
 
@@ -38,11 +38,11 @@ public class OTAListener implements WakefulIntentService.AlarmListener {
     public void scheduleAlarms(AlarmManager alarmManager, PendingIntent pendingIntent, Context context) {
         mIntervalValue = AppConfig.getUpdateIntervalTime(context);
         if (mIntervalValue > 0) {
-            OTAUtils.logInfo("NuclearOTA is scheduled for every: " + mIntervalValue + " ms");
+            OTAUtils.logInfo("HadesOTA is scheduled for every: " + mIntervalValue + " ms");
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + 60000, mIntervalValue, pendingIntent);
         } else {
-            OTAUtils.logInfo("NuclearOTA is disabled");
+            OTAUtils.logInfo("HadesOTA is disabled");
         }
     }
 

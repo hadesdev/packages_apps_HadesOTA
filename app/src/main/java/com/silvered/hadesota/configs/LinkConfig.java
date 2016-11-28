@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.configs;
+package com.silvered.hadesota.configs;
 
 import android.content.Context;
 
-import com.delozoya.nuclearota.xml.OTALink;
-import com.delozoya.nuclearota.xml.OTAParser;
-import com.delozoya.nuclearota.utils.OTAUtils;
+import com.silvered.hadesota.xml.OTALink;
+import com.silvered.hadesota.xml.OTAParser;
+import com.silvered.hadesota.utils.OTAUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

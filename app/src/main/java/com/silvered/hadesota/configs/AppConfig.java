@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.configs;
+package com.silvered.hadesota.configs;
 
 import android.app.AlarmManager;
 import android.content.Context;
@@ -22,9 +22,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.commonsware.cwac.wakeful.WakefulIntentService;
-import com.delozoya.nuclearota.R;
-import com.delozoya.nuclearota.scheduler.OTAListener;
-import com.delozoya.nuclearota.utils.OTAUtils;
+import com.silvered.hadesota.R;
+import com.silvered.hadesota.scheduler.OTAListener;
+import com.silvered.hadesota.utils.OTAUtils;
 
 import java.text.DateFormat;
 import java.util.Date;

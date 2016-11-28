@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.delozoya.nuclearota" >
+    package="com.silvered.hadesota" >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,12 +12,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_nuclear"
+        android:icon="@mipmap/ic_hades"
         android:label="@string/app_name"
         android:sharedUserId="com.google.uid.shared"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.delozoya.nuclearota.MainActivity"
+            android:name="com.silvered.hadesota.MainActivity"
             android:noHistory="true"
             android:label="@string/app_name" >
             <intent-filter>
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".main"
+            android:name="com.silvered.hadesota.main"
             android:label="@string/app_name">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN1"/>
@@ -35,7 +35,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <service android:name="com.delozoya.nuclearota.scheduler.OTAService" />
+        <service android:name="com.silvered.hadesota.scheduler.OTAService" />
         <receiver android:name="com.commonsware.cwac.wakeful.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

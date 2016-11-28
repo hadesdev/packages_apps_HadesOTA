@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.utils;
+package com.silvered.hadesota.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.delozoya.nuclearota.configs.OTAConfig;
+import com.silvered.hadesota.configs.OTAConfig;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,7 +36,7 @@ import java.util.Properties;
 
 public final class OTAUtils {
 
-    private static final String TAG = "NuclearOTA";
+    private static final String TAG = "HadesOTA";
     private static final boolean DEBUG = true;
 
     private static final String BUILD_PROP = "/system/build.prop";

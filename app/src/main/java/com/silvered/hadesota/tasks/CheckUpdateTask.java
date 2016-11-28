@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.tasks;
+package com.silvered.hadesota.tasks;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -27,19 +27,17 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
-import com.delozoya.nuclearota.MainActivity;
-import com.delozoya.nuclearota.R;
-import com.delozoya.nuclearota.configs.AppConfig;
-import com.delozoya.nuclearota.configs.LinkConfig;
-import com.delozoya.nuclearota.configs.OTAConfig;
-import com.delozoya.nuclearota.configs.OTAVersion;
-import com.delozoya.nuclearota.dialogs.WaitDialogHandler;
-import com.delozoya.nuclearota.fragments.NuclearOTAFragment;
-import com.delozoya.nuclearota.utils.OTAUtils;
-import com.delozoya.nuclearota.xml.OTADevice;
-import com.delozoya.nuclearota.xml.OTAParser;
+import com.silvered.hadesota.MainActivity;
+import com.silvered.hadesota.R;
+import com.silvered.hadesota.configs.AppConfig;
+import com.silvered.hadesota.configs.LinkConfig;
+import com.silvered.hadesota.configs.OTAConfig;
+import com.silvered.hadesota.configs.OTAVersion;
+import com.silvered.hadesota.dialogs.WaitDialogHandler;
+import com.silvered.hadesota.utils.OTAUtils;
+import com.silvered.hadesota.xml.OTADevice;
+import com.silvered.hadesota.xml.OTAParser;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -157,8 +155,8 @@ public class CheckUpdateTask extends AsyncTask<Context, Void, OTADevice> {
         Notification.Builder builder = new Notification.Builder(context);
         builder.setContentTitle(context.getString(R.string.notification_title));
         builder.setContentText(context.getString(R.string.notification_message));
-        builder.setSmallIcon(R.drawable.notification_nuclear);
-        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.notification_nuclear_large));
+        builder.setSmallIcon(R.drawable.notification_hades);
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.notification_hades_large));
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -18,8 +18,8 @@
 <resources>
 
     <!-- App -->
-    <string name="app_name">NuclearOTA</string>
-    <string name="app_title">NuclearOTA</string>
+    <string name="app_name">HadesOTA</string>
+    <string name="app_title">HadesOTA</string>
     <string name="ok">OK</string>
     <string name="reboot">Reboot</string>
     <string name="cancel">No</string>

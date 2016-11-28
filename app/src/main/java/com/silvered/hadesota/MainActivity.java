@@ -14,25 +14,21 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.scheduler;
+package com.silvered.hadesota;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Bundle;
 
-import com.commonsware.cwac.wakeful.WakefulIntentService;
-import com.delozoya.nuclearota.tasks.CheckUpdateTask;
+public class MainActivity extends Activity {
 
-public class OTAService extends WakefulIntentService {
-
-    public OTAService() {
-        super("NuclearOTA");
-    }
 
     @Override
-    protected void doWakefulWork(Intent intent) {
-        CheckUpdateTask otaChecker = CheckUpdateTask.getInstance(true);
-        if (!otaChecker.getStatus().equals(AsyncTask.Status.RUNNING)) {
-            otaChecker.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getApplicationContext());
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = new Intent(MainActivity.this, main.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

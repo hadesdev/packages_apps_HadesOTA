@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.configs;
+package com.silvered.hadesota.configs;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.delozoya.nuclearota.utils.OTAUtils;
+import com.silvered.hadesota.utils.OTAUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

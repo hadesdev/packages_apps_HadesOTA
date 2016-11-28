@@ -6,7 +6,7 @@ ifneq ($(ANDROID_BUILD_TOP),)
 endif
 
 LOCAL_MODULE_TAGS := optional
-LOCAL_PACKAGE_NAME := NuclearOTA
+LOCAL_PACKAGE_NAME := HadesOTA
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_SRC_FILES := $(call all-java-files-under, app/src/main)

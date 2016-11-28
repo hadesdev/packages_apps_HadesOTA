@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota;
+package com.silvered.hadesota;
 
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -28,19 +28,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.delozoya.nuclearota.configs.LinkConfig;
-import com.delozoya.nuclearota.dialogs.WaitDialogFragment;
-import com.delozoya.nuclearota.fragments.NuclearOTAFragment;
+import com.silvered.hadesota.configs.LinkConfig;
+import com.silvered.hadesota.dialogs.WaitDialogFragment;
+import com.silvered.hadesota.fragments.HadesOTAFragment;
 
 public class main extends PreferenceActivity implements
         WaitDialogFragment.OTADialogListener, LinkConfig.LinkConfigListener {
 
-    private static final String FRAGMENT_TAG = NuclearOTAFragment.class.getName();
-    private NuclearOTAFragment mFragment;
+    private static final String FRAGMENT_TAG = HadesOTAFragment.class.getName();
+    private HadesOTAFragment mFragment;
     Boolean showLauncherShortcut = true;
     Boolean hideLaucherIcon = false;
     String settingsPackageName= "com.android.settings";
-    String settingsNuclearDrawableName = "ic_nuclear_ota_exposed";
+    String settingsHadesDrawableName = "ic_hades_ota_exposed";
 
     Menu menu;
 
@@ -48,10 +48,10 @@ public class main extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFragment = (NuclearOTAFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+        mFragment = (HadesOTAFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
         if (mFragment == null) {
             getFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, new NuclearOTAFragment(), FRAGMENT_TAG)
+                    .replace(android.R.id.content, new HadesOTAFragment(), FRAGMENT_TAG)
                     .commit();
         }
 
@@ -114,7 +114,7 @@ public class main extends PreferenceActivity implements
 
         try {
             Resources res = getApplicationContext().getPackageManager().getResourcesForApplication(settingsPackageName);
-            int drawableid = res.getIdentifier(settingsPackageName+":drawable/"+settingsNuclearDrawableName, "drawable", settingsPackageName);
+            int drawableid = res.getIdentifier(settingsPackageName+":drawable/"+settingsHadesDrawableName, "drawable", settingsPackageName);
             if ( drawableid != 0 ) {
                 showLauncherShortcut = false;
                 Log.d("LayersManager", "checked settings for icon, true");
@@ -152,7 +152,7 @@ public class main extends PreferenceActivity implements
         prefEditor.putBoolean("hide_icon", hideLaucherIcon);
         prefEditor.apply();
         PackageManager p = getPackageManager();
-        ComponentName componentName = new ComponentName(this, com.delozoya.nuclearota.MainActivity.class); // activity which is first time open in manifiest file which is declare as <category android:name="android.intent.category.LAUNCHER" />
+        ComponentName componentName = new ComponentName(this, com.silvered.hadesota.MainActivity.class); // activity which is first time open in manifiest file which is declare as <category android:name="android.intent.category.LAUNCHER" />
         p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
 
@@ -162,7 +162,7 @@ public class main extends PreferenceActivity implements
         prefEditor.putBoolean("hide_icon", hideLaucherIcon);
         prefEditor.apply();
         PackageManager p = getPackageManager();
-        ComponentName componentName = new ComponentName(this, com.delozoya.nuclearota.MainActivity.class);
+        ComponentName componentName = new ComponentName(this, com.silvered.hadesota.MainActivity.class);
         p.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 }

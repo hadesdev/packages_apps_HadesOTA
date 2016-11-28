@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.delozoya.nuclearota.dialogs;
+package com.silvered.hadesota.dialogs;
 
 import android.app.Activity;
 import android.app.Fragment;
